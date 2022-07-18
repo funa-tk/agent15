@@ -49,6 +49,10 @@ public class TlsServerEngineFactory {
         this.serverCertificates = readCertificates(certificateFile);
         this.certificateKey = readPrivateKey(certificateKeyFile);
     }
+    public TlsServerEngineFactory(List<X509Certificate> certificateFiles, RSAPrivateKey privateKey) {
+        this.serverCertificates = certificateFiles;
+        this.certificateKey = privateKey;
+    }
 
     public TlsServerEngine createServerEngine(ServerMessageSender serverMessageSender, TlsStatusEventHandler tlsStatusHandler) {
         TlsServerEngine tlsServerEngine = new TlsServerEngine(serverCertificates, certificateKey, serverMessageSender, tlsStatusHandler, tlsSessionRegistry);
